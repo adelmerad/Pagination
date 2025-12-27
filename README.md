@@ -119,11 +119,11 @@ This query means:
 
 | Criterion                | Offset Pagination | Cursor Pagination |
 | ------------------------ | ----------------- | ----------------- |
-| Simplicity               | ✅ High            | ⚠️ Medium         |
-| Performance (large data) | ❌ Poor            | ✅ Excellent       |
-| Scalability              | ❌ Limited         | ✅ High            |
-| Consistency              | ❌ Risky           | ✅ Stable          |
-| Random Page Access       | ✅ Yes             | ❌ No              |
+| Simplicity               |  High             |  Medium           |
+| Performance (large data) |  Poor             |  Excellent        |
+| Scalability              |  Limited          |  High             |
+| Consistency              |  Risky            |  Stable           |
+| Random Page Access       |  Yes              |  No               |
 
 There is no universally perfect solution. The right choice depends on system needs.
 
