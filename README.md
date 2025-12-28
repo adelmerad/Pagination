@@ -267,6 +267,7 @@ In Rifters, players can accumulate a long history of completed missions across m
 
 ## Architecture with Pagination & Virtualization :
 
+```
 Player (AR Interface)
         ↓ scroll / interaction
 Virtualized Card List (Frontend)
@@ -274,9 +275,11 @@ Virtualized Card List (Frontend)
 Backend API (Pagination Logic)
         ↓ optimized queries
 Database (Mission Logs)
+```
 
 ## Data & Rendering Flow Diagram :
 
+```
 [ Player Scrolls ]
         ↓
 [ Virtualized UI ]  ← renders only visible cards
@@ -286,6 +289,7 @@ Database (Mission Logs)
 [ Backend Pagination Logic ]
         ↓
 [ Database ]
+```
 
 ## Why This Architecture?
 
