@@ -314,6 +314,7 @@ git clone https://github.com/adelmerad/Pagination.git
 cd Pagination
 ```
 * Backend Setup :
+
   -- To Navigate to the Backend Directory :
 ```
 cd backend
@@ -335,6 +336,7 @@ pip install -r requirements.txt
 python manage.py runserver 8010
 ```
 * Frontend Setup :
+
   -- To Navigate to the Frontend Directory :
 ```
 cd frontend 
