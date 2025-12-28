@@ -32,13 +32,11 @@ const MissionCard = ({ mission }) => {
         e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
       }}
     >
-      {/* Corner Decorations */}
       <div style={{position: 'absolute', top: 0, left: 0, width: '24px', height: '24px', borderTop: '4px solid black', borderLeft: '4px solid black', marginTop: '-4px', marginLeft: '-4px'}}></div>
       <div style={{position: 'absolute', top: 0, right: 0, width: '24px', height: '24px', borderTop: '4px solid black', borderRight: '4px solid black', marginTop: '-4px', marginRight: '-4px'}}></div>
       <div style={{position: 'absolute', bottom: 0, left: 0, width: '24px', height: '24px', borderBottom: '4px solid black', borderLeft: '4px solid black', marginBottom: '-4px', marginLeft: '-4px'}}></div>
       <div style={{position: 'absolute', bottom: 0, right: 0, width: '24px', height: '24px', borderBottom: '4px solid black', borderRight: '4px solid black', marginBottom: '-4px', marginRight: '-4px'}}></div>
 
-      {/* Era Label */}
       <div style={{marginBottom: '1rem'}}>
         <div 
           style={{
@@ -56,7 +54,6 @@ const MissionCard = ({ mission }) => {
         </div>
       </div>
 
-      {/* Mission Title */}
       <h3 
         style={{
           fontSize: '1.875rem',
@@ -70,10 +67,8 @@ const MissionCard = ({ mission }) => {
         {mission.mission_name}
       </h3>
 
-      {/* Divider */}
       <div style={{borderTop: '2px solid black', margin: '1rem 0', opacity: 0.5}}></div>
 
-      {/* Mission Details */}
       <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', color: 'black'}}>
         <div>
           <p style={{fontWeight: 'bold', marginBottom: '0.25rem', fontFamily: 'Georgia, serif'}}>

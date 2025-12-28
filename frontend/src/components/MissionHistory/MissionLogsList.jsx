@@ -44,7 +44,6 @@ const MissionLogsList = () => {
       padding: '1.5rem',
       backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='paper' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Crect width='100' height='100' fill='%23f5f1e8'/%3E%3Cpath d='M0 0L100 100M100 0L0 100' stroke='%23e8dfc8' stroke-width='0.5' opacity='0.1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100' height='100' fill='url(%23paper)'/%3E%3C/svg%3E")`
     }}>
-      {/* Ornate Header */}
       <div style={{maxWidth: '56rem', margin: '0 auto 2rem auto'}}>
         <div style={{
           position: 'relative',
@@ -54,13 +53,11 @@ const MissionLogsList = () => {
           padding: '2rem',
           boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
         }}>
-          {/* Corner Decorations */}
           <div style={{position: 'absolute', top: 0, left: 0, width: '32px', height: '32px', borderTop: '4px solid black', borderLeft: '4px solid black', marginTop: '-4px', marginLeft: '-4px'}}></div>
           <div style={{position: 'absolute', top: 0, right: 0, width: '32px', height: '32px', borderTop: '4px solid black', borderRight: '4px solid black', marginTop: '-4px', marginRight: '-4px'}}></div>
           <div style={{position: 'absolute', bottom: 0, left: 0, width: '32px', height: '32px', borderBottom: '4px solid black', borderLeft: '4px solid black', marginBottom: '-4px', marginLeft: '-4px'}}></div>
           <div style={{position: 'absolute', bottom: 0, right: 0, width: '32px', height: '32px', borderBottom: '4px solid black', borderRight: '4px solid black', marginBottom: '-4px', marginRight: '-4px'}}></div>
           
-          {/* Decorative Flourish */}
           <div style={{textAlign: 'center', marginBottom: '1rem'}}>
             <span style={{fontSize: '1.5rem'}}>✦ ══════════ ✦</span>
           </div>
@@ -86,14 +83,12 @@ const MissionLogsList = () => {
             Chronicle of Your Journey Through Time
           </p>
           
-          {/* Decorative Flourish */}
           <div style={{textAlign: 'center', marginTop: '1rem'}}>
             <span style={{fontSize: '1.5rem'}}>✦ ══════════ ✦</span>
           </div>
         </div>
       </div>
 
-      {/* Mission Cards List */}
       <div style={{maxWidth: '56rem', margin: '0 auto'}}>
         {initialLoad && loading && (
           <div style={{

@@ -1,6 +1,5 @@
 const API_BASE_URL = 'http://localhost:8010/api';
 
-// Add delay function
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 export const fetchMissions = async (cursor = null, limit = 3) => {
@@ -11,7 +10,6 @@ export const fetchMissions = async (cursor = null, limit = 3) => {
     
     console.log('🔄 Fetching missions from:', url);
     
-    // Add 800ms delay to simulate network latency
     await delay(800);
     
     const response = await fetch(url, {
