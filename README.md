@@ -314,36 +314,36 @@ git clone https://github.com/adelmerad/Pagination.git
 cd Pagination
 ```
 * Backend Setup :
-  * To Navigate to the Backend Directory :
+  -- To Navigate to the Backend Directory :
 ```
 cd backend
 ```
-  * To Create a Virtual Environment :
+  -- To Create a Virtual Environment :
 ```
 python -m venv venv
 ```
-  * To Activate the Virtual Environment (Windows) :
+  -- To Activate the Virtual Environment (Windows) :
 ```
 venv\Scripts\activate
 ```
-  * To Install Backend Dependencies :
+  -- To Install Backend Dependencies :
 ```
 pip install -r requirements.txt
 ```
-  * To Run the Backend Server :
+  -- To Run the Backend Server :
 ```
 python manage.py runserver 8010
 ```
 * Frontend Setup :
-  * To Navigate to the Frontend Directory :
+  -- To Navigate to the Frontend Directory :
 ```
 cd frontend 
 ```
-  * To Install Frontend Dependencies :
+  -- To Install Frontend Dependencies :
 ```
 npm install
 ```
- * To Start the Frontend Dev Server :
+  -- To Start the Frontend Dev Server :
 ```
 npm run dev
 ```
