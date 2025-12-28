@@ -303,5 +303,49 @@ Database (Mission Logs)
 * Game inventories
 * Activity feeds
 * Timeline-based applications
+---
 
-----
+## Setup and Run Instructions
+Follow the steps below to clone the repository and run both the backend and frontend
+
+* To Clone the Repository :
+```
+git clone https://github.com/adelmerad/Pagination.git
+cd Pagination
+```
+* Backend Setup :
+  * To Navigate to the Backend Directory :
+```
+cd backend
+```
+  * To Create a Virtual Environment :
+```
+python -m venv venv
+```
+  * To Activate the Virtual Environment (Windows) :
+```
+venv\Scripts\activate
+```
+  * To Install Backend Dependencies :
+```
+pip install -r requirements.txt
+```
+  * To Run the Backend Server :
+```
+python manage.py runserver 8010
+```
+* Frontend Setup :
+  * To Navigate to the Frontend Directory :
+```
+cd frontend 
+```
+  * To Install Frontend Dependencies :
+```
+npm install
+```
+ * To Start the Frontend Dev Server :
+```
+npm run dev
+```
+
+-----
