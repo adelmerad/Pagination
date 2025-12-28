@@ -35,7 +35,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        {/* Navigation Bar */}
         <nav style={styles.nav}>
           <div style={styles.navContainer}>
             <Link to="/" style={styles.logo}>
@@ -72,7 +71,6 @@ function App() {
   );
 }
 
-// Home Page Component
 const HomePage = () => {
   const homeStyles = {
     container: {
