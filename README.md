@@ -319,8 +319,10 @@ So, The Virtualization focuses on UI rendering efficiency, not on data fetching.
 
 ## Is Virtualization Part of Pagination?
  No, they're different: 
+ 
  * Pagination = server/data side (how much to fetch)
  * Virtualization = UI/display side (how much to show)
+
  They complement each other perfectly.
 
 
