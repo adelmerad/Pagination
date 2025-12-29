@@ -1,5 +1,12 @@
-# Pagination
-Build IT
+# Pagination in Practice: Rifters Mission Log
+
+![Django](https://img.shields.io/badge/Django-REST-092E20?logo=django&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![React Query](https://img.shields.io/badge/React_Query-FF4154?logo=reactquery&logoColor=white)
+
+A study of pagination as a data-access strategy, with a working example: the mission log of **Rifters**, an AR game concept about Algerian history. A Django REST API serves 300 seeded missions through cursor pagination, and a React frontend loads them page by page.
+
+**Team:** [Adel Merad](https://github.com/adelmerad) (frontend), [Ahmed Ragoub](https://github.com/ahmedragoub01) (backend), Ilyes Semghouni (research and documentation)
 ---
 
 ## Summary
@@ -480,6 +487,11 @@ venv\Scripts\activate
   -- To Install Backend Dependencies :
 ```
 pip install -r requirements.txt
+```
+  -- To Create the Database and Seed 300 Missions :
+```
+python manage.py migrate
+python manage.py seed_missions
 ```
   -- To Run the Backend Server :
 ```
