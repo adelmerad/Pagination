@@ -1,35 +1,14 @@
-const API_BASE_URL = 'http://localhost:8010/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8010/api';
 
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+// One page of missions. The cursor is an opaque string from the API: we only pass it back.
+export const fetchMissions = async (cursor = null) => {
+  const url = cursor
+    ? `${API_BASE_URL}/missions/?cursor=${encodeURIComponent(cursor)}`
+    : `${API_BASE_URL}/missions/`;
 
-export const fetchMissions = async (cursor = null, limit = 3) => {
-  try {
-    const url = cursor 
-      ? `${API_BASE_URL}/missions/?cursor=${encodeURIComponent(cursor)}`
-      : `${API_BASE_URL}/missions/`;
-    
-    console.log('🔄 Fetching missions from:', url);
-    
-    await delay(800);
-    
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    
-    const data = await response.json();
-    console.log('✅ Received data:', data);
-    
-    return data;
-    
-  } catch (error) {
-    console.error('❌ Error fetching missions:', error);
+  const response = await fetch(url, { headers: { Accept: 'application/json' } });
+  if (!response.ok) {
     throw new Error('Failed to load mission history. Please check your connection and try again.');
   }
+  return response.json();
 };

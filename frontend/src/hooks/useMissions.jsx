@@ -1,67 +1,33 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useMemo } from 'react';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchMissions } from '../services/missionService';
 
+// Cursor pagination with React Query: each page knows the cursor of the next one,
+// and React Query keeps the loaded pages, the loading state and the errors.
 export const useMissions = () => {
-  const [missions, setMissions] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
-  const [cursor, setCursor] = useState(null);
-  const [error, setError] = useState(null);
-  const [initialLoad, setInitialLoad] = useState(true);
-  
-  const isFetchingRef = useRef(false);
+  const query = useInfiniteQuery({
+    queryKey: ['missions'],
+    queryFn: ({ pageParam }) => fetchMissions(pageParam),
+    initialPageParam: null,
+    getNextPageParam: (lastPage) =>
+      lastPage.pagination.has_more ? lastPage.pagination.next_cursor : undefined,
+  });
 
-  const loadMissions = useCallback(async (currentCursor) => {
-    if (isFetchingRef.current) return;
-    
-    isFetchingRef.current = true;
-    setLoading(true);
-    setError(null);
-    
-    try {
-      const data = await fetchMissions(currentCursor);
-      
-      setMissions(prev => {
-        const existingIds = new Set(prev.map(m => m.id));
-        const newMissions = data.data.filter(m => !existingIds.has(m.id));
-        return [...prev, ...newMissions];
-      });
-      
-      setCursor(data.pagination.next_cursor);
-      setHasMore(data.pagination.has_more);
-      
-    } catch (err) {
-      setError(err.message);
-      console.error('Error fetching missions:', err);
-    } finally {
-      setLoading(false);
-      setInitialLoad(false);
-      isFetchingRef.current = false;
-    }
-  }, []);
-
-  const loadMore = useCallback(() => {
-    if (hasMore && !loading) {
-      loadMissions(cursor);
-    }
-  }, [hasMore, loading, cursor, loadMissions]);
-
-  const retry = useCallback(() => {
-    setError(null);
-    loadMissions(cursor);
-  }, [cursor, loadMissions]);
-
-  useEffect(() => {
-    loadMissions(null);
-  }, [loadMissions]);
+  const missions = useMemo(
+    () => query.data?.pages.flatMap((page) => page.data) ?? [],
+    [query.data]
+  );
 
   return {
     missions,
-    loading,
-    hasMore,
-    error,
-    initialLoad,
-    loadMore,
-    retry
+    loading: query.isPending || query.isFetchingNextPage,
+    hasMore: Boolean(query.hasNextPage),
+    error: query.error ? query.error.message : null,
+    initialLoad: query.isPending,
+    loadMore: () => {
+      if (query.hasNextPage && !query.isFetchingNextPage) query.fetchNextPage();
+    },
+    // retry the request that failed: the first page, or the next one
+    retry: () => (query.data ? query.fetchNextPage() : query.refetch()),
   };
 };

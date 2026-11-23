@@ -26,15 +26,10 @@ const MissionLogsList = () => {
       { threshold: 0.1 }
     );
 
-    if (observerTarget.current) {
-      observer.observe(observerTarget.current);
-    }
+    const target = observerTarget.current;
+    if (target) observer.observe(target);
 
-    return () => {
-      if (observerTarget.current) {
-        observer.unobserve(observerTarget.current);
-      }
-    };
+    return () => observer.disconnect();
   }, [loadMore, hasMore, loading]);
 
   return (
