@@ -136,10 +136,10 @@ class Command(BaseCommand):
         Mission.objects.bulk_create(missions)
         
         self.stdout.write(
-            self.style.SUCCESS(f'✅ Successfully seeded {len(missions)} missions')
+            self.style.SUCCESS(f'Successfully seeded {len(missions)} missions')
         )
         
         # Show statistics
         for era in missions_templates.keys():
             count = Mission.objects.filter(era=era).count()
-            self.stdout.write(f'  📍 {era}: {count} missions')
+            self.stdout.write(f'  {era}: {count} missions')

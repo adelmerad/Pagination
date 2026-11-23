@@ -387,9 +387,9 @@ Cards appear as floating AR elements where:
 ## Pagination Strategy Used
 We use cursor‑based pagination for mission logs:
 
-* The cursor represents the last completed mission (by timestamp or ID)
-* The next request loads missions completed after that cursor
-* This guarantees consistent ordering even if new missions are added
+* Missions are ordered from the most recent (`-visited_at`), and the cursor is the date of the last mission on the page
+* The next request loads the missions completed before that date, with `WHERE visited_at < cursor`
+* New missions appear at the top of the list, so they never shift or repeat the pages already loaded
 
 # This strategy is ideal for:
 
@@ -399,14 +399,32 @@ We use cursor‑based pagination for mission logs:
 
 ## Example API Flow
 
-GET /missions/logs?cursor=2024-05-01T18:30&limit=5
+```
+GET /api/missions/
+GET /api/missions/?cursor=cD0yMDI2LTExLTIwKzE3JTNBNTElM0EyOS41NzE1MjYlMkIwMCUzQTAw
+```
+
+The cursor is opaque for the client, but it is only base64: this one decodes to `p=2026-11-20 17:51:29.571526+00:00`, the date of the last mission of the previous page. Django REST Framework turns it into:
+
+```sql
+SELECT ... FROM missions_mission
+WHERE visited_at < '2026-11-20 17:51:29.571526'
+ORDER BY visited_at DESC
+LIMIT 4   -- page size 3, plus one row to know if there is a next page
+```
 
 ## Response:
 
-* Returns the next 5 completed missions
-* Includes metadata about the next cursor
+```json
+{ "data": [ ...3 missions... ], "pagination": { "next_cursor": "...", "has_more": true } }
+```
+
+On the frontend, `useInfiniteQuery` (React Query) keeps the loaded pages and asks for the next one with `next_cursor` when the last card scrolls into view.
 
 ## Use of Virtualization in Rifters :
+
+> **Not implemented yet.** Virtualization is part of the design below, but this demo renders every loaded card: after scrolling to the end, all 300 cards are in the page. It would be the next step, for example with `@tanstack/react-virtual`.
+
 In Rifters, players can accumulate a long history of completed missions across multiple historical eras.
 
 * Mission logs are displayed as AR pop-out cards
